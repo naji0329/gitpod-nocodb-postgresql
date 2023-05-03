@@ -1,0 +1,26 @@
+tasks:
+  - init: |
+      # install container images
+      docker-compose pull
+      pip install -U pgcli
+
+  - command: |
+      gp open README.md
+      export PUBLIC_IP=127.0.0.1
+      docker-compose up &&
+      pgcli 'postgres://demo:abc123!@localhost:5432/demodb'
+   
+ports:
+
+  # PostgreSQL
+  - port: 5432
+    visibility: private
+
+  # NocoDB
+  - port: 28276
+    onOpen: open-preview
+    visibility: public
+
+vscode:
+  extensions:
+    - ms-azuretools.vscode-docker    

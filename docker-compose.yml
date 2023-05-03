@@ -1,0 +1,53 @@
+version: '3.5'
+networks:
+  default:
+    name: nocodb-platform
+services:
+  #  ================================== PostgreSQL ========================================== #
+  postgresql:
+    image: postgres:13
+    container_name: postgresql
+    hostname: postgresql
+    labels:
+      com.platys.name: postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=abc123!
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_MULTIPLE_DATABASES=demodb
+      - POSTGRES_MULTIPLE_USERS=demo
+      - POSTGRES_MULTIPLE_PASSWORDS=abc123!
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - DB_SCHEMA=demo
+    healthcheck: 
+      interval: 10s
+      retries: 10
+      test: "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""
+      timeout: 2s
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./init/postgresql:/docker-entrypoint-initdb.d/
+      - ./container-volume/postgresql/data:/var/lib/postgresql/data/pgdata:Z
+    restart: unless-stopped
+  #  ================================== NocoDB ========================================== #
+  nocodb:
+    depends_on: 
+      postgresql:
+        condition: service_healthy
+    image: nocodb/nocodb:latest
+    container_name: nocodb
+    hostname: nocodb
+    ports:
+      - 28276:8080
+    environment:
+      # NC_DB: "pg://postgresql:5432?u=postgres&p=abc123!&d=postgres"
+      NC_DB: "pg://postgresql:5432?u=demo&p=abc123!&d=demodb"
+    volumes:
+      - ./data-transfer:/data-transfer
+      - ./container-volumes/nocodb/data:/usr/app/data
+    restart: unless-stopped
+volumes:
+  data-transfer-vol:
+    name: data_transfer_vol
