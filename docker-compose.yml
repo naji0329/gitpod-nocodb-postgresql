@@ -1,3 +1,4 @@
+# based on generated output from Trivadis Platsys
 version: '3.5'
 networks:
   default:
@@ -8,8 +9,6 @@ services:
     image: postgres:13
     container_name: postgresql
     hostname: postgresql
-    labels:
-      com.platys.name: postgresql
     ports:
       - 5432:5432
     environment:
@@ -46,7 +45,7 @@ services:
       NC_DB: "pg://postgresql:5432?u=demo&p=abc123!&d=demodb"
     volumes:
       - ./data-transfer:/data-transfer
-      - ./container-volumes/nocodb/data:/usr/app/data
+      - ./container-volume/nocodb/data:/usr/app/data
     restart: unless-stopped
 volumes:
   data-transfer-vol:
