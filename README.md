@@ -1,8 +1,7 @@
 # nocodb-postgresql-gitpod
 Gitpod workspace definition with NocoDB and PostgreSQL
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lucasjellema/nocodb-postgresql-gitpodnocodb-postgresql-gitpod)
-nocodb-postgresql-gitpod
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lucasjellema/nocodb-postgresql-gitpod)
 
 The workspace includes services PostgreSQL (open source database) and nocodb ( a no-code database platform that allows teams to collaborate and build applications with ease of a familiar and intuitive spreadsheet interface) . These are started when the docker-compose.yml file is started - which happens when the workspace is launched.
 
