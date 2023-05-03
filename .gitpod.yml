@@ -1,13 +1,16 @@
 tasks:
-  - init: |
+  - name: pull container images
+    init: |
       # install container images
       docker-compose pull
-      pip install -U pgcli
-
-  - command: |
+    command: |
       gp open README.md
       export PUBLIC_IP=127.0.0.1
-      docker-compose up &&
+      docker-compose up
+  - name: Install PGCLI  
+    init: |
+      pip install -U pgcli
+    command: 
       pgcli 'postgres://demo:abc123!@localhost:5432/demodb'
    
 ports:
