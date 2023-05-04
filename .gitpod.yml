@@ -10,7 +10,7 @@ tasks:
   - name: Install PGCLI  
     init: |
       pip install -U pgcli 
-      gp sync-wait run-PostgreSQL
+      gp sync-await run-PostgreSQL
     command: 
       pgcli 'postgres://demo:abc123!@localhost:5432/demodb'
    
