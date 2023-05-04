@@ -41,8 +41,8 @@ services:
     ports:
       - 8080:8080
     environment:
-      # database connection string for nocodb backend
-      NC_DB: "pg://postgresql:5432?u=demo&p=abc123!&d=demodb"
+      # database connection string for nocodb backend (meta data)
+      NC_DB: "pg://postgresql:5432?u=postgres&p=abc123!&d=postgres"
     volumes:
       - ./data-transfer:/data-transfer
       - ./container-volume/nocodb/data:/usr/app/data
