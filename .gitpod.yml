@@ -6,10 +6,11 @@ tasks:
     command: |
       gp open README.md
       export PUBLIC_IP=127.0.0.1
-      docker-compose up
+      docker-compose up && gp sync-done run-PostgreSQL 
   - name: Install PGCLI  
     init: |
-      pip install -U pgcli
+      pip install -U pgcli 
+      gp sync-wait run-PostgreSQL
     command: 
       pgcli 'postgres://demo:abc123!@localhost:5432/demodb'
    
