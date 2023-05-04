@@ -106,6 +106,6 @@ At this point, I will let your imagination, the documentation for Nocodb, [live 
 
 # Resources
 
-[NocoDB documentation](https://docs.nocodb.com/)
-[NocoDB GitHub](https://github.com/nocodb/nocodb)
-[NocoDB Live Demo](https://docs-prev.nocodb.com/getting-started/demos/)
+* [NocoDB documentation](https://docs.nocodb.com/)
+* [NocoDB GitHub](https://github.com/nocodb/nocodb)
+* [NocoDB Live Demo](https://docs-prev.nocodb.com/getting-started/demos/)
